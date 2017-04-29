@@ -4,6 +4,7 @@ const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
+
 const path = require('path')
 const url = require('url')
 
@@ -53,6 +54,7 @@ app.on('activate', function () {
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
     createWindow()
+    BrowserWindow.addDevToolsExtension("C:\Users\vinic\AppData\Local\Google\Chrome\User Data\Default\Extensions\fmkadmapgofadopljbjfkapdkoienihi\2.1.3_0")
   }
 })
 

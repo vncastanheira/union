@@ -1,19 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-  </body>
 
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+  <div>
+    <button id="add" onclick="addShortcut()">Add Shortcut</button>
+  </div>
+  <div id="shortcuts">
+
+  </div>
+</body>
+
+<script>
+  // You can also require other files to run in this process
+  require('./renderer.js')
+
+  const Config = require('electron-config');
+  const { dialog } = require('electron').remote
+  const { BrowserWindow } = require('electron').remote
+  const smalltalk = require('smalltalk')
+
+  const config = new Config();
+  if (!config.has('unity-list'))
+    config.set('unity-list', []);
+
+  var unityList = config.get('unity-list');
+  unityList.forEach(function (element) {
+    createButtonShortcuts(element);
+  }, this);
+
+
+  function createButtonShortcuts(entry) {
+    var btn = document.createElement("button");
+    btn.setAttribute("class", "unity");
+    btn.setAttribute("onclick", "openFile('" + entry.path + "')");
+
+    var lab = document.createElement("Label");
+    lab.innerHTML = entry.version;
+
+    document.getElementById("shortcuts").appendChild(lab);
+    document.getElementById("shortcuts").appendChild(btn);
+  }
+
+  function openFile(path) {
+    const { shell } = require('electron');
+    // Open a local file in the default app
+    shell.openItem(path);
+  }
+
+  function addShortcut() {
+    dialog.showOpenDialog({ properties: ['openFile'], filters: [{ name: 'Executables', extensions: ['exe'] }] }, function (filePaths) {
+      if (filePaths) {
+        smalltalk.prompt('Which Unity version is this?', '', '').then(function (value) {
+          var list = config.get('unity-list');
+          var s = {
+            version: value,
+            path: filePaths[0].replace(/\\/g, "\\\\")
+          };
+          list.push(s);
+          config.set('unity-list', list);
+          location.reload();
+          console.log('Unity instances: ' + list.length)
+        }, function () {
+          console.log('cancel');
+        });
+
+
+
+      }
+    });
+  }
+
+</script>
+
 </html>

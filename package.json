@@ -12,7 +12,8 @@
     "quick",
     "start",
     "tutorial",
-    "demo"
+    "demo",
+    "electron-config"
   ],
   "author": "GitHub",
   "license": "CC0-1.0",
