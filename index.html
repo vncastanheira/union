@@ -3,16 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Hello World!</title>
+  <title>Union - an Unity launcher</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="css/smalltalk.css">
 </head>
 
 <body>
-  <div>
-    <button id="add" onclick="addShortcut()">Add Shortcut</button>
-  </div>
   <div id="shortcuts">
-
+    <div class="unity">
+      <p>
+        <button id="add" onclick="addShortcut()"></button>
+      </p>
+    </div>
   </div>
 </body>
 
@@ -29,22 +31,42 @@
   if (!config.has('unity-list'))
     config.set('unity-list', []);
 
-  var unityList = config.get('unity-list');
+  const unityList = config.get('unity-list');
   unityList.forEach(function (element) {
     createButtonShortcuts(element);
   }, this);
 
 
   function createButtonShortcuts(entry) {
+
     var btn = document.createElement("button");
-    btn.setAttribute("class", "unity");
+    btn.setAttribute("class", "unity-button");
     btn.setAttribute("onclick", "openFile('" + entry.path + "')");
 
-    var lab = document.createElement("Label");
+    var lab = document.createElement("center");
     lab.innerHTML = entry.version;
+    lab.setAttribute("class", "unity-version");
 
-    document.getElementById("shortcuts").appendChild(lab);
-    document.getElementById("shortcuts").appendChild(btn);
+    var removeBtn = document.createElement("button");
+    removeBtn.innerHTML = "Remove";
+    var index = unityList.indexOf(entry);
+    removeBtn.setAttribute("onclick", "removeEntry(" + index + ")");
+
+    var div = document.createElement("div");
+    div.setAttribute("class", "unity");
+    var p1 = document.createElement("p");
+    p1.appendChild(btn);
+    var p2 = document.createElement("p");
+    p2.appendChild(lab);
+    var p3 = document.createElement("p");
+    p3.appendChild(removeBtn);
+
+    div.appendChild(p1);
+    div.appendChild(p2);
+    div.appendChild(p3);
+
+    var shortcuts = document.getElementById("shortcuts");
+    shortcuts.insertBefore(div, shortcuts.childNodes[0]);
   }
 
   function openFile(path) {
@@ -53,25 +75,27 @@
     shell.openItem(path);
   }
 
+  function removeEntry(index) {
+    unityList.splice(index, 1);
+    config.set('unity-list', unityList);
+    location.reload();
+  }
+
   function addShortcut() {
     dialog.showOpenDialog({ properties: ['openFile'], filters: [{ name: 'Executables', extensions: ['exe'] }] }, function (filePaths) {
       if (filePaths) {
         smalltalk.prompt('Which Unity version is this?', '', '').then(function (value) {
-          var list = config.get('unity-list');
           var s = {
             version: value,
             path: filePaths[0].replace(/\\/g, "\\\\")
           };
-          list.push(s);
-          config.set('unity-list', list);
+          unityList.push(s);
+          config.set('unity-list', unityList);
           location.reload();
-          console.log('Unity instances: ' + list.length)
+          console.log('Unity instances: ' + unityList.length)
         }, function () {
           console.log('cancel');
         });
-
-
-
       }
     });
   }

@@ -4,7 +4,6 @@ const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
-
 const path = require('path')
 const url = require('url')
 
@@ -14,7 +13,17 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({
+    minWidth: 600,
+    minHeight: 200,
+    Width: 600,
+    Height: 200,
+    resizable: false,
+    fullscreenable: false,
+    title: 'Union',
+    titleBarStyle: 'hidden',
+    icon: 'img/icon.png'
+  })
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
