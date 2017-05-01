@@ -22,7 +22,7 @@ function createWindow () {
     fullscreenable: false,
     title: 'Union',
     titleBarStyle: 'hidden',
-    icon: 'img/icon.png'
+    icon: 'icon.ico'
   })
 
   // and load the index.html of the app.
@@ -33,7 +33,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+   //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

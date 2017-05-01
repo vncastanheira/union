@@ -1,1 +1,4 @@
 node_modules
+Union-win32-x64
+*.zip
+*.asar

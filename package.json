@@ -4,18 +4,21 @@
   "description": "an Unity launcher",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . Union && asar pack Union-win32-x64/resources/app app.asar"
   },
   "repository": "https://github.com/vncastanheira/union",
   "keywords": [
     "Electron",
     "quick",
     "start",
-    "electron-config"
+    "electron-config",
+    "smalltalk"
   ],
-  "author": "GitHub",
+  "author": "Vinicius",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "~1.6.2"
+    "electron": "~1.6.2",
+    "electron-packager": "^8.6.0"
   }
 }
