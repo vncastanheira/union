@@ -1,0 +1,2 @@
+- Change .exe icon (lots of Electrons app does that)
+- Minimize to system tray when launching Unity

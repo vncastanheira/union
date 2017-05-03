@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . Union && asar pack Union-win32-x64/resources/app app.asar"
+    "build": "electron-packager . --arch=ia32 --no-prune && asar p union-win32-ia32/resources/app union-win32-ia32/resources/app.asar",
+    "publish": "itch-win.bat"
   },
   "repository": "https://github.com/vncastanheira/union",
   "keywords": [
@@ -18,7 +19,10 @@
   "author": "Vinicius",
   "license": "CC0-1.0",
   "devDependencies": {
+    "asar": "^0.13.0",
     "electron": "~1.6.2",
-    "electron-packager": "^8.6.0"
+    "electron-config": "^1.0.0",
+    "electron-packager": "^8.6.0",
+    "smalltalk": "^2.2.0"
   }
 }
