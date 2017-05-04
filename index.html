@@ -73,6 +73,7 @@
     const { shell } = require('electron');
     // Open a local file in the default app
     shell.openItem(path);
+    BrowserWindow.getFocusedWindow().minimize();
   }
 
   function removeEntry(index) {

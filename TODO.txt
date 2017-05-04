@@ -1,2 +1,2 @@
-- Change .exe icon (lots of Electrons app does that)
-- Minimize to system tray when launching Unity
+- Change app name in taskbar (remains Electron)
+- Minimize to system tray when launching Unity (minimize to taskbar)
