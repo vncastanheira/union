@@ -23,6 +23,7 @@
     "electron": "~1.6.2",
     "electron-config": "^1.0.0",
     "electron-packager": "^8.6.0",
-    "smalltalk": "^2.2.0"
+    "smalltalk": "^2.2.0",
+    "devDependencies": "1.4.0" 
   }
 }

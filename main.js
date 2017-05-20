@@ -15,10 +15,7 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     minWidth: 600,
-    minHeight: 200,
-    Width: 600,
-    Height: 200,
-    resizable: false,
+    minHeight: 150,
     fullscreenable: false,
     title: 'Union',
     titleBarStyle: 'hidden',
