@@ -4,15 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Union - an Unity launcher</title>
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/smalltalk.css">
+  <link rel="stylesheet" type="text/css" href="css/photon.min.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
 <body>
+  <header class="toolbar toolbar-header" style="-webkit-app-region: drag">
+    <h1 class="title">Union (alpha)</h1>
+  </header>
+
   <div id="shortcuts">
     <div class="unity">
       <p>
-        <button id="add" onclick="addShortcut()"></button>
+        <button class="btn btn-large btn-default" id="add" onclick="addShortcut()" title="Add a new shortcut">
+          <span id="override-icon" class="icon icon-plus-circled"></span>
+        </button>
       </p>
     </div>
   </div>
@@ -20,7 +27,7 @@
 
 <script>
   // You can also require other files to run in this process
-  require('./renderer.js')
+  const Rend = require('./renderer.js')
 
   const Config = require('electron-config');
   const { dialog } = require('electron').remote
@@ -40,16 +47,20 @@
   function createButtonShortcuts(entry) {
 
     var btn = document.createElement("button");
-    btn.setAttribute("class", "unity-button");
+    btn.setAttribute("class", "unity-button btn btn-large btn-default");
     btn.setAttribute("onclick", "openFile('" + entry.path + "')");
+    btn.setAttribute("title", "Open Unity " + entry.version);
 
-    var lab = document.createElement("center");
-    lab.innerHTML = entry.version;
-    lab.setAttribute("class", "unity-version");
+    var innerbtn = document.createElement("span");
+    innerbtn.innerHTML = entry.version;
+    innerbtn.setAttribute("class", "unity-version");
+    btn.appendChild(innerbtn);
 
     var removeBtn = document.createElement("button");
     removeBtn.innerHTML = "Remove";
     var index = unityList.indexOf(entry);
+    removeBtn.setAttribute("title", "Remove this shortcut from list");
+    removeBtn.setAttribute("class", "btn btn-negative");
     removeBtn.setAttribute("onclick", "removeEntry(" + index + ")");
 
     var div = document.createElement("div");
@@ -57,7 +68,6 @@
     var p1 = document.createElement("p");
     p1.appendChild(btn);
     var p2 = document.createElement("p");
-    p2.appendChild(lab);
     var p3 = document.createElement("p");
     p3.appendChild(removeBtn);
 

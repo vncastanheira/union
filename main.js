@@ -22,7 +22,8 @@ function createWindow () {
     fullscreenable: false,
     title: 'Union',
     titleBarStyle: 'hidden',
-    icon: 'icon.ico'
+    icon: 'icon.ico',
+    frame: false
   })
 
   // and load the index.html of the app.

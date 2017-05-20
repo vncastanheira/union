@@ -14,14 +14,19 @@
 .unity-button {
     width: 70px;
     height: 70px;
-    background-image: url("../img/unity.jpeg");
-    background-size: contain;    
+}
+
+span#override-icon {
+    font-size: 36px; 
+    float: none;
+    margin: 0px;
 }
 
 
 .unity-version {
     background-color: white;
     color: black;
+    font-size: 26px;
     font-weight: bold;
     bottom: 0;
 }
@@ -29,6 +34,6 @@
 #add {
     width: 70px;
     height: 70px;
-    background-image: url("../img/circle-plus.jpg");
+    /*background-image: url("../img/circle-plus.png");*/
     background-size: contain;
 }
