@@ -43,7 +43,7 @@
     BrowserWindow.getFocusedWindow().close();
   });
   t.on('minimize', function (e) {
-    BrowserWindow.getFocusedWindow().minimize();
+    BrowserWindow.getFocusedWindow().hide();
   });
   // remove fullscreen button
   document.getElementsByClassName("titlebar-fullscreen")[0].setAttribute("hidden", "hidden")

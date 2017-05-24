@@ -4,14 +4,19 @@ const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
+// User configurations
+const Config = require('electron-config');
+
 const path = require('path')
 const url = require('url')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let tray
+let userconfig
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     minWidth: 600,
@@ -22,7 +27,7 @@ function createWindow () {
     icon: 'icon.ico',
     frame: false
   })
-
+  
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
@@ -31,7 +36,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-   //mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -40,6 +45,20 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  // Create the tray
+  tray = new electron.Tray('icon.ico')
+  tray.on('click', () => {
+    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+  })
+
+  mainWindow.on('hide', ()=> {
+    tray.displayBalloon({
+      title: "Union",
+      content: "App is still running on the tray."
+    });
+  })
+
 }
 
 // This method will be called when Electron has finished
