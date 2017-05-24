@@ -10,11 +10,6 @@
 </head>
 
 <body>
-  <div id="app-title"></div>
-  <header class="toolbar toolbar-header" style="-webkit-app-region: drag">
-    <h1 class="title">Union (alpha)</h1>
-  </header>
-
   <div id="shortcuts">
     <div class="unity">
       <p>
@@ -35,19 +30,18 @@
   const { BrowserWindow } = require('electron').remote
   const smalltalk = require('smalltalk')
 
-  var titlebar = require('titlebar');
-  var t = titlebar();
-  t.appendTo(document.getElementById("app-title"));
-  t.on('close', function (e) {
-    t.destroy();
-    BrowserWindow.getFocusedWindow().close();
-  });
-  t.on('minimize', function (e) {
-    BrowserWindow.getFocusedWindow().hide();
-  });
+  // var titlebar = require('titlebar');
+  // var t = titlebar();
+  // t.appendTo(document.getElementById("app-title"));
+  // t.on('close', function (e) {
+  //   t.destroy();
+  //   BrowserWindow.getFocusedWindow().close();
+  // });
+  // t.on('minimize', function (e) {
+  //   BrowserWindow.getFocusedWindow().hide();
+  // });
   // remove fullscreen button
-  document.getElementsByClassName("titlebar-fullscreen")[0].setAttribute("hidden", "hidden")
-
+  //document.getElementsByClassName("titlebar-fullscreen")[0].setAttribute("hidden", "hidden")
 
   const config = new Config();
   if (!config.has('unity-list'))

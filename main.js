@@ -22,10 +22,11 @@ function createWindow() {
     minWidth: 600,
     minHeight: 150,
     fullscreenable: false,
+    resizable: false,
     title: 'Union',
     titleBarStyle: 'hidden',
     icon: 'icon.ico',
-    frame: false
+    frame: true
   })
   
   // and load the index.html of the app.
@@ -52,13 +53,13 @@ function createWindow() {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
   })
 
+  mainWindow.on('minimize', mainWindow.hide)
   mainWindow.on('hide', ()=> {
     tray.displayBalloon({
       title: "Union",
       content: "App is still running on the tray."
     });
   })
-
 }
 
 // This method will be called when Electron has finished
