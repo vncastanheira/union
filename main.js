@@ -25,10 +25,9 @@ function createWindow() {
     resizable: false,
     title: 'Union',
     titleBarStyle: 'hidden',
-    icon: 'icon.ico',
     frame: true
   })
-  
+
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
@@ -48,19 +47,29 @@ function createWindow() {
   })
 
   // Create the tray
-  tray = new electron.Tray('icon.ico')
+  tray = new electron.Tray(__dirname + '/icon.ico')
   tray.on('click', () => {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
   })
 
   mainWindow.on('minimize', mainWindow.hide)
-  mainWindow.on('hide', ()=> {
+  mainWindow.on('hide', () => {
     tray.displayBalloon({
       title: "Union",
       content: "App is still running on the tray."
     });
   })
 }
+
+const shouldQuit = app.makeSingleInstance((cmd, workingDirectory) => {
+  if (mainWindow) {
+    mainWindow.show();
+    mainWindow.focus();
+  }
+})
+
+if (shouldQuit)
+  app.quit();
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

@@ -1,12 +1,17 @@
 {
   "name": "union",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "description": "an Unity launcher",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . --icon=icon.ico --arch=ia32 --no-prune && asar p union-win32-ia32/resources/app union-win32-ia32/resources/app.asar",
-    "publish": "itch-win.bat"
+    "packager": "electron-packager . --icon=icon.ico --arch=ia32 --no-prune && asar p union-win32-ia32/resources/app union-win32-ia32/resources/app.asar",
+    "publish": "itch-win.bat",
+    "pack": "build --dir",
+    "dist": "build --win --ia32"
+  },
+  "build": {
+    "appId": "com.viniciusdevelops.union"
   },
   "repository": "https://github.com/vncastanheira/union",
   "keywords": [
@@ -18,12 +23,15 @@
   ],
   "author": "Vinicius",
   "license": "CC0-1.0",
+  "dependencies": {
+    "electron-config": "^1.0.0"
+  },
   "devDependencies": {
     "asar": "^0.13.0",
-    "electron": "~1.6.2",
+    "electron": "~1.6.10",
+    "electron-builder": "^18.6.2",
     "electron-config": "^1.0.0",
-    "electron-packager": "^8.6.0",
-    "smalltalk": "^2.2.0",
-    "devDependencies": "1.4.0"
+    "electron-packager": "^8.7.1",
+    "smalltalk": "^2.2.0"
   }
 }
