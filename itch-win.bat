@@ -1,1 +1,1 @@
-butler push union-win32-ia32 epiplon/union:win
+butler push dist/win-unpacked epiplon/union:win

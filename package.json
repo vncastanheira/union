@@ -24,14 +24,13 @@
   "author": "Vinicius",
   "license": "CC0-1.0",
   "dependencies": {
-    "electron-config": "^1.0.0"
+    "electron-config": "^1.0.0",
+    "smalltalk": "^2.2.0"
   },
   "devDependencies": {
     "asar": "^0.13.0",
     "electron": "~1.6.10",
     "electron-builder": "^18.6.2",
-    "electron-config": "^1.0.0",
-    "electron-packager": "^8.7.1",
-    "smalltalk": "^2.2.0"
+    "electron-packager": "^8.7.1"
   }
 }

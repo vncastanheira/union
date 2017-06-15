@@ -15,6 +15,7 @@ const url = require('url')
 let mainWindow
 let tray
 let userconfig
+let trayAlerted = false
 
 function createWindow() {
   // Create the browser window.
@@ -54,10 +55,13 @@ function createWindow() {
 
   mainWindow.on('minimize', mainWindow.hide)
   mainWindow.on('hide', () => {
-    tray.displayBalloon({
-      title: "Union",
-      content: "App is still running on the tray."
-    });
+    if(!trayAlerted){
+      tray.displayBalloon({
+        title: "Union",
+        content: "App is still running on the tray."
+      });
+      trayAlerted = true;
+    }
   })
 }
 
