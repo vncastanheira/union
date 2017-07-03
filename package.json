@@ -1,6 +1,6 @@
 {
   "name": "union",
-  "version": "0.3.2",
+  "version": "0.3.5",
   "description": "an Unity launcher",
   "main": "main.js",
   "scripts": {

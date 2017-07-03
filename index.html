@@ -102,7 +102,7 @@
   }
 
   function addShortcut() {
-    dialog.showOpenDialog({ properties: ['openFile'], filters: [{ name: 'Executables', extensions: ['exe'] }] }, function (filePaths) {
+    dialog.showOpenDialog({ properties: ['openFile'], filters: [{ name: 'Executables', extensions: ['exe', 'bat'] }] }, function (filePaths) {
       if (filePaths) {
         smalltalk.prompt('Which Unity version is this?', '', '').then(function (value) {
           var s = {
