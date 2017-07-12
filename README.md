@@ -5,5 +5,5 @@
 - built with [Electron](https://electron.atom.io)
 
 ## Build
-- run _npm run dis_
+- run _npm run dist_
 - run _npm run publish_

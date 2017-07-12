@@ -4,20 +4,20 @@
 }
 
 .unity {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-color: black;
     text-align: center;
     float: left;
 }
 
 .unity-button {
-    width: 70px;
-    height: 70px;
+    width: 150px;
+    height: 100px;
 }
 
 span#override-icon {
-    font-size: 36px; 
+    font-size: 42px; 
     float: none;
     margin: 0px;
 }
@@ -26,14 +26,12 @@ span#override-icon {
 .unity-version {
     background-color: white;
     color: black;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     bottom: 0;
 }
 
 #add {
-    width: 70px;
-    height: 70px;
     /*background-image: url("../img/circle-plus.png");*/
     background-size: contain;
 }
